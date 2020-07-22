@@ -47,7 +47,7 @@
     "feathers-permissions": "^0.2.1",
     "helmet": "^3.16.0",
     "mongodb-core": "^3.2.3",
-    "mongoose": "^5.5.2",
+    "mongoose": "^5.7.5",
     "mongoose-unique-validator": "^2.0.3",
     "serve-favicon": "^2.5.0",
     "vue-cookie": "^1.1.4",
