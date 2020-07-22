@@ -1,0 +1,66 @@
+version: '3.1'
+services:
+  frontend:
+    restart: always
+    build: ./frontend
+    ports:
+    - 80:80
+    - 443:443
+    
+  server:
+    restart: always
+    build: ./backend
+    ports:
+    - 3030:3030
+    command: npm run build
+    depends_on:
+    - mongo-seed
+    links:
+    - mongo
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootPass
+    ports:
+    - 27017:27017
+
+  mongo-seed:
+    build: ./mongo-seed
+    links:
+    - mongo
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+    - 8081:8081
+    environment: 
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: rootPass
+      ME_CONFIG_BASICAUTH_USERNAME: urcritical_swen90013
+      ME_CONFIG_BASICAUTH_PASSWORD: urcriticalPass_swen90013
+    depends_on:
+    - mongo
+
+  mongodbbackup:
+    build: ./database-backup
+    restart: always
+    links:
+      - mongo
+    depends_on:
+      - mongo-seed
+    environment:
+      - MONGODB_HOST=mongo
+      - MONGODB_PORT=27017
+      - MONGODB_USER=root
+      - MONGODB_PASS=rootPass
+      - MONGODB_DB=ur_critical
+      - EXTRA_OPTS=--authenticationDatabase admin
+      - CRON_TIME=0 0 * * 0 # 00:00 every day | */1 * * * * per min | 0 0 * * 0 weekly
+      - MAX_BACKUPS=4
+      - INIT_BACKUP=yes
+    volumes:
+      - ~/database-backup:/backup #Change to the host folder where you want to store the backups

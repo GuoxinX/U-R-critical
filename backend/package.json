@@ -1,0 +1,63 @@
+{
+  "name": "ur-critical",
+  "description": "",
+  "version": "0.0.0",
+  "homepage": "",
+  "main": "src",
+  "keywords": [
+    "feathers"
+  ],
+  "author": {
+    "name": "Cameron Dempsey",
+    "email": "cdempsey1@student.unimelb.edu.au"
+  },
+  "contributors": [],
+  "bugs": {},
+  "directories": {
+    "lib": "src",
+    "test": "test/",
+    "config": "config/"
+  },
+  "engines": {
+    "node": "^10.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "scripts": {
+    "test": "npm run eslint && NODE_ENV= npm run mocha",
+    "eslint": "eslint src/. test/. --config .eslintrc.json",
+    "dev": "nodemon src/",
+    "build": "MONGOHQ_URL=mongodb://root:rootPass@mongo:27017/ur_critical?authSource=admin NODE_ENV=production node src/",
+    "start": "node src/",
+    "mocha": "npm run clean && NODE_ENV=test mocha test/ --recursive --exit",
+    "clean": "shx rm -rf test/data/"
+  },
+  "dependencies": {
+    "@feathersjs/authentication": "^2.1.16",
+    "@feathersjs/authentication-jwt": "^2.0.10",
+    "@feathersjs/authentication-local": "^1.2.9",
+    "@feathersjs/configuration": "^2.0.6",
+    "@feathersjs/errors": "^3.3.6",
+    "@feathersjs/express": "^1.3.1",
+    "@feathersjs/feathers": "^3.3.1",
+    "@feathersjs/socketio": "^3.2.9",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "feathers-hooks-common": "^4.20.7",
+    "feathers-mongoose": "^7.3.2",
+    "feathers-permissions": "^0.2.1",
+    "helmet": "^3.16.0",
+    "mongodb-core": "^3.2.3",
+    "mongoose": "^5.5.2",
+    "mongoose-unique-validator": "^2.0.3",
+    "serve-favicon": "^2.5.0",
+    "vue-cookie": "^1.1.4",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.11",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}

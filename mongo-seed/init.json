@@ -1,0 +1,11 @@
+[
+    {
+      "username": "administrator",
+      "password": "$2a$13$FVR0/rC/Ii.ryoe5Jx14NO6gmBAh2tag0oYrNlt/DW2/EuR.a6lH2",
+      "permissions": "admin",
+      "reset_pin": true,
+      "first_login": false,
+      "negative_count": 0,
+      "emotion_score": 0
+    }
+  ]

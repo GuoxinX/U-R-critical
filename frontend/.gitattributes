@@ -1,0 +1,2 @@
+*.key filter=git-crypt diff=git-crypt
+*.crt filter=git-crypt diff=git-crypt
